@@ -1,9 +1,15 @@
 import express from 'express';
 const app = express();
 const port = 3000;
-import livroRotas from './routes/livroRotas.js';
+import noticiasRotas from './routes/noticiasRotas.js';
+import authRotas from './routes/authRotas.js';
+import cors from 'cors';
 
-app.use('/livros', livroRotas);
+app.use(cors());
+
+app.use('/auth', authRotas);
+
+app.use('/noticias', noticiasRotas);
 
 app.get('/', (req, res) => {
     res.send('API de Noticias.')

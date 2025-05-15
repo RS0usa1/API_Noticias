@@ -3,33 +3,56 @@ CREATE DATABASE Site_noticias;
 USE Site_noticias;
 
 CREATE TABLE Alunos (
-	id_aluno INT PRIMARY KEY AUTO_INCREMENT, 
-	nome VARCHAR(300) NOT NULL,
-	email VARCHAR(300) NOT NULL,
+	id_aluno INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	nome VARCHAR(255) NOT NULL,
+	email VARCHAR(255) NOT NULL,
 	senha INT NOT NULL,
-	cargo VARCHAR(150) NOT NULL
+	cargo VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Professores (
-	id_professores INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(300) NOT NULL,
-	email VARCHAR(300) NOT NULL,
+	id_professores INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	nome VARCHAR(255) NOT NULL,
+	email VARCHAR(255) NOT NULL,
 	senha INT NOT NULL
 );
 
-CREATE TABLE Cordenadores (
-	id_cordenador INT PRIMARY KEY AUTO_INCREMENT,
-	nome  VARCHAR(300) NOT NULL,
-	email  VARCHAR(300) NOT NULL,
+CREATE TABLE Coordenadores (
+	id_coordenador INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	nome VARCHAR(255) NOT NULL,
+	email VARCHAR(255) NOT NULL,
 	senha INT NOT NULL
 );
 
 CREATE TABLE Noticias (
-	id_noticias INT PRIMARY KEY AUTO_INCREMENT,
+	id_noticias INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	assunto TEXT NOT NULL,
 	descrição TEXT NOT NULL,
-	imagens BLOB,
-	data DATE
+	data DATE NOT NULL,
+	id_imagens BLOB NOT NULL,
+	id_usuario INTEGER NOT NULL
+);
+
+CREATE TABLE Categoria (
+	id_categoria INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	nome_categoria VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Noticia_Categoria (
+	id_categoria INT NOT NULL,
+    id_noticia INTEGER NOT NULL
+);
+
+CREATE TABLE Imagens (
+	id_imagens INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	imagens BLOB NOT NULL
+);
+
+CREATE TABLE Usuarios (
+	id_coordenador INT NOT NULL ,
+	id_alunos INT NOT NULL,
+	id_professores INT NOT NULL,
+	id_usuario INT PRIMARY KEY AUTO_INCREMENT NOT NULL
 );
 
 INSERT INTO Alunos (nome, email, senha, cargo)
@@ -113,6 +136,8 @@ VALUES		('Ana Souza', 'ana.souza@email.com', 12345678, 'gremio'),
 			('Beatriz Ramos', 'beatriz.ramos@email.com', 62636363, 'aluno'),
 			('Cristiano Martins', 'cristiano.martins@email.com', 63646464, 'aluno'),
 			('Débora Lima', 'debora.lima@email.com', 64656565, 'aluno');
+            
+SELECT *FROM Alunos;
 
 INSERT INTO Professores (nome, email, senha) 
 VALUES		('Adriana Costa', 'adriana.costa@email.com', 12345678),
@@ -124,6 +149,10 @@ VALUES		('Adriana Costa', 'adriana.costa@email.com', 12345678),
 			('Gisele Martins', 'gisele.martins@email.com', 78901234),
 			('Henrique Duarte', 'henrique.duarte@email.com', 89012345);
             
-INSERT INTO Cordenadores (nome, email, senha)
+SELECT *FROM Professores;
+
+INSERT INTO Coordenadores (nome, email, senha)
 VALUES      ('Ariuci Coruja', 'ariuci.coruja@gmail.com', 92357925),
             ('Viviane Genteboa', 'viviane.genteboa@gmail.com', 73057294);
+            
+SELECT *FROM Coordenadores;
