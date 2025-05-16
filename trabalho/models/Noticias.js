@@ -13,6 +13,7 @@ const obterNoticiaPorId = async (id) => {
         return await read('Noticia', `id = ${id}`);
     } catch (err) {
         console.error('Erro ao obter livro por ID: ', err);
+        throw err;
     }
 };
 
@@ -21,6 +22,7 @@ const criarNoticia = async (noticiaData) => {
         return await create('noticias', noticiaData);
     } catch (err) {
         res.status(500).json({ mensagem: 'Erro ao criar noticia: ', err });
+        throw err;
     }
 };
 
@@ -29,6 +31,7 @@ const atualizarNoticia = async (id, livroData) => {
         await update('noticias', livroData, `id = ${id}`);
     } catch (err) {
         console.error('Erro ao atualizar noticia: ', err);
+        throw err;
     }
 };
 
@@ -37,6 +40,7 @@ const excluirNoticia = async (id, livroData) => {
         await deleteRecord('noticias', livroData, `id = ${id}`);
     } catch (err) {
         console.error('Erro ao excluir noticia: ', err);
+        throw err;
     }
 }
 

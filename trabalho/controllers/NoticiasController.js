@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 const listarNoticiasController = async (req, res) => {
     try {
         const noticias = await listarNoticias();
-        res.json(noticias);
+        res.status(200).json(noticias);
     } catch (err) {
         console.error('Erro ao listar noticias: ', err);
         res.status(500).json({ mensagem: 'Erro ao listar noticias.' });
@@ -19,7 +19,7 @@ const obterNoticiaPorIdController = async (req, res) => {
     try {
         const noticia = await obterNoticiaPorId(req.params.id);
         if (noticia) {
-            res.json(noticia)
+            res.status(200).json(noticia)
         } else {
             res.status(404).json({ mensagem: 'Noticia não encontrada.' })
         }
@@ -31,7 +31,7 @@ const obterNoticiaPorIdController = async (req, res) => {
 
 const criarNoticiaController = async (req, res) => {
     try {
-        const { assunto, descrição, data, imagem} = req.body;
+        const { assunto, descrição, data, imagem } = req.body;
         let imagemPath = null;
         // req requisita algo do servidor e file indica que essa requisição irá possuir um arquivo enviado pelo usuário.
         if (req.file) {
@@ -40,17 +40,17 @@ const criarNoticiaController = async (req, res) => {
         }
         // requisição do conteudo enviado pelo criador da noticia
         const noticiaData =
-        [
-           conteudo =  {
-                            assunto: assunto,
-                            descrição: descrição,
-                            data: data
-                       },
-            img =   {
-                        img: imagem
-                    }
-        ];
-    
+            [
+                conteudo = {
+                    assunto: assunto,
+                    descrição: descrição,
+                    data: data
+                },
+                img = {
+                    img: imagem
+                }
+            ];
+
         const noticiaId = await criarNoticia(noticiaData);
         res.status(201).json({ mensagem: 'Noticia criada com sucesso', noticiaId });
     } catch (err) {
@@ -62,7 +62,7 @@ const criarNoticiaController = async (req, res) => {
 const atualizarNoticiaController = async (req, res) => {
     try {
         const noticiaId = req.params.id;
-        const { assunto, descrição, data, imagem} = req.body;
+        const { assunto, descrição, data, imagem } = req.body;
         let imagemPath = null;
         // req requisita algo do servidor e file indica que essa requisição irá possuir um arquivo enviado pelo usuário.
         if (req.file) {
@@ -71,16 +71,16 @@ const atualizarNoticiaController = async (req, res) => {
         }
         // requisição do conteudo enviado pelo criador da noticia
         const noticiaData =
-        [
-           conteudo =  {
-                            assunto: assunto,
-                            descrição: descrição,
-                            data: data
-                       },
-            img =   {
-                        img: imagem
-                    }
-        ];
+            [
+                conteudo = {
+                    assunto: assunto,
+                    descrição: descrição,
+                    data: data
+                },
+                img = {
+                    img: imagem
+                }
+            ];
 
         await atualizarNoticia(noticiaId, noticiaData);
         res.status(201).json({ mensagem: 'Noticia atualizada com sucesso.' });
@@ -97,7 +97,7 @@ const excluirNoticiaController = async (req, res) => {
         res.status(200).json({ mensagem: 'Noticia excluida com sucesso.' });
     } catch (err) {
         console.error('Erro ao excluir noticia: ', err);
-        res.atatus(500).json ({ mensagem: 'Erro ao excluir noticia.' });
+        res.atatus(500).json({ mensagem: 'Erro ao excluir noticia.' });
     }
 }
 

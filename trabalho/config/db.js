@@ -1,11 +1,10 @@
 import mysql from 'mysql2/promise';
-import bcrypt from 'bcryptjs';
 
 const pool = mysql.createPool({
     host: 'localhost', 
     user: 'root', 
     password: '', 
-    database: '',
+    database: 'Site_noticias',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
@@ -13,7 +12,7 @@ const pool = mysql.createPool({
 
 async function getConnection() {
     return pool.getConnection();
-}
+};
 
 //Função para ler todos os registros
 async function readAll(table, where = null) {
@@ -33,7 +32,7 @@ async function readAll(table, where = null) {
         connection.release();
     }
 
-}
+};
 
 //Função para ler  um registro específico
 async function read(table, where) {
@@ -52,7 +51,7 @@ async function read(table, where) {
     } finally {
         connection.release();
     }
-}
+};
 
 //Função para inserir dados
 async function create(table, data) {
@@ -78,7 +77,7 @@ async function create(table, data) {
     } finally {
         connection.release();
     }
-}
+};
 
 //Função para atualizar um registro
 async function update(table, data, where) {
@@ -99,7 +98,7 @@ async function update(table, data, where) {
     } finally {
         connection.release();
     }
-}
+};
 
 // Função para excluir um registro
 async function deleteRecord(table, where) {
@@ -114,14 +113,6 @@ async function deleteRecord(table, where) {
     } finally {
         connection.release();
     }
-}
+};
 
-async function compare(senha, hash) {
-    try {
-        return await bcrypt.compare(senha, hash);
-    } catch (err) {
-        console.error('Erro ao comparar a senha com o hash: ')
-    }
-}
-
-export { create, readAll, read, update, deleteRecord, compare };
+export { create, readAll, read, update, deleteRecord };

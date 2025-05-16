@@ -2,157 +2,218 @@ CREATE DATABASE Site_noticias;
 
 USE Site_noticias;
 
-CREATE TABLE Alunos (
-	id_aluno INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+CREATE TABLE Noticias (
+	id_noticias INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	titulo TEXT(65535) NOT NULL,
+	descrição TEXT(65535) NOT NULL,
+	data DATE NOT NULL,
+	imagem BLOB NOT NULL,
+	id_usuario INT NOT NULL,
+	categoria VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Usuarios (
+	id_usuario INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	nome VARCHAR(255) NOT NULL,
 	email VARCHAR(255) NOT NULL,
 	senha INT NOT NULL,
 	cargo VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE Professores (
-	id_professores INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	nome VARCHAR(255) NOT NULL,
-	email VARCHAR(255) NOT NULL,
-	senha INT NOT NULL
+INSERT INTO Usuarios (nome, email, senha, cargo) 
+VALUES	('Ana Silva', 'ana.silva@escola.com', 784512, 'adm'),
+		('Carlos Oliveira', 'carlos.oliveira@escola.com', 965823, 'adm'),
+        ('Mariana Costa', 'mariana.costa@escola.com', 147258, 'professor'),
+		('Pedro Santos', 'pedro.santos@escola.com', 258369, 'professor'),
+		('Juliana Pereira', 'juliana.pereira@escola.com', 369147, 'professor'),
+		('Ricardo Almeida', 'ricardo.almeida@escola.com', 482573, 'professor'),
+		('Fernanda Lima', 'fernanda.lima@escola.com', 573684, 'professor'),
+		('Roberto Souza', 'roberto.souza@escola.com', 684795, 'professor'),
+		('Patricia Rocha', 'patricia.rocha@escola.com', 795816, 'professor'),
+		('Marcos Ferreira', 'marcos.ferreira@escola.com', 816927, 'professor'),
+		('Lucia Mendes', 'lucia.mendes@escola.com', 927138, 'professor'),
+		('Gustavo Barbosa', 'gustavo.barbosa@escola.com', 138249, 'professor'),
+        ('João Gomes', 'joao.gomes@escola.com', 451267, 'gremio'),
+		('Maria Ribeiro', 'maria.ribeiro@escola.com', 562378, 'gremio'),
+		('Lucas Martins', 'lucas.martins@escola.com', 673489, 'gremio'),
+		('Sofia Cardoso', 'sofia.cardoso@escola.com', 784591, 'gremio'),
+		('Mateus Dias', 'mateus.dias@escola.com', 895612, 'gremio'),
+		('Laura Teixeira', 'laura.teixeira@escola.com', 916723, 'gremio'),
+		('Enzo Moreira', 'enzo.moreira@escola.com', 127834, 'gremio'),
+		('Valentina Nunes', 'valentina.nunes@escola.com', 238945, 'gremio'),
+		('Gabriel Castro', 'gabriel.castro@escola.com', 349156, 'gremio'),
+		('Helena Carvalho', 'helena.carvalho@escola.com', 451267, 'gremio'),
+        ('Rafael Pinto', 'rafael.pinto@escola.com', 567812, 'aluno'),
+		('Beatriz Ramos', 'beatriz.ramos@escola.com', 678923, 'aluno'),
+		('Bruno Azevedo', 'bruno.azevedo@escola.com', 789134, 'aluno'),
+		('Isabela Correia', 'isabela.correia@escola.com', 891245, 'aluno'),
+		('Diego Gonçalves', 'diego.goncalves@escola.com', 912356, 'aluno'),
+		('Larissa Lopes', 'larissa.lopes@escola.com', 123467, 'aluno'),
+		('Thiago Monteiro', 'thiago.monteiro@escola.com', 234578, 'aluno'),
+		('Yasmin Barros', 'yasmin.barros@escola.com', 345689, 'aluno'),
+		('Eduardo Freitas', 'eduardo.freitas@escola.com', 456791, 'aluno'),
+		('Clara Andrade', 'clara.andrade@escola.com', 567812, 'aluno'),
+		('Felipe Vasconcelos', 'felipe.vasconcelos@escola.com', 678923, 'aluno'),
+		('Marina Magalhães', 'marina.magalhaes@escola.com', 789134, 'aluno'),
+		('Vinícius Peixoto', 'vinicius.peixoto@escola.com', 891245, 'aluno'),
+		('Luiza Tavares', 'luiza.tavares@escola.com', 912356, 'aluno'),
+		('Igor Fonseca', 'igor.fonseca@escola.com', 123467, 'aluno'),
+		('Manuela Menezes', 'manuela.menezes@escola.com', 234578, 'aluno'),
+		('Daniel Brito', 'daniel.brito@escola.com', 345689, 'aluno'),
+		('Giovanna Leal', 'giovanna.leal@escola.com', 456791, 'aluno'),
+		('Leonardo Queiroz', 'leonardo.queiroz@escola.com', 567812, 'aluno'),
+		('Sophie Siqueira', 'sophie.siqueira@escola.com', 678923, 'aluno'),
+		('Arthur Diniz', 'arthur.diniz@escola.com', 789134, 'aluno'),
+		('Alice Veloso', 'alice.veloso@escola.com', 891245, 'aluno'),
+		('Henrique Bessa', 'henrique.bessa@escola.com', 912356, 'aluno'),
+		('Lívia Paiva', 'livia.paiva@escola.com', 123467, 'aluno'),
+		('Luiz Furtado', 'luiz.furtado@escola.com', 234578, 'aluno'),
+		('Emanuelly Dantas', 'emanuelly.dantas@escola.com', 345689, 'aluno'),
+		('André Cordeiro', 'andre.cordeiro@escola.com', 456791, 'aluno'),
+		('Antonella Brites', 'antonella.brites@escola.com', 567812, 'aluno'),
+		('Raul Lessa', 'raul.lessa@escola.com', 678923, 'aluno'),
+		('Elisa Meireles', 'elisa.meireles@escola.com', 789134, 'aluno'),
+		('Cauã Alencar', 'caua.alencar@escola.com', 891245, 'aluno'),
+		('Lorena Câmara', 'lorena.camara@escola.com', 912356, 'aluno'),
+		('Breno Maciel', 'breno.maciel@escola.com', 123467, 'aluno'),
+		('Gabrielly Salgado', 'gabrielly.salgado@escola.com', 234578, 'aluno'),
+		('Otávio Medeiros', 'otavio.medeiros@escola.com', 345689, 'aluno'),
+		('Esther Guedes', 'esther.guedes@escola.com', 456791, 'aluno'),
+		('Nathan Aguiar', 'nathan.aguiar@escola.com', 567812, 'aluno'),
+		('Rebeca Falcão', 'rebeca.falcao@escola.com', 678923, 'aluno'),
+		('Davi Lucca Fontes', 'davi.fontes@escola.com', 789134, 'aluno'),
+		('Lara Holanda', 'lara.holanda@escola.com', 891245, 'aluno'),
+		('Ryan Bezerra', 'ryan.bezerra@escola.com', 912356, 'aluno'),
+		('Melissa Ximenes', 'melissa.ximenes@escola.com', 123467, 'aluno'),
+		('João Pedro Pacheco', 'joaop.pacheco@escola.com', 234578, 'aluno'),
+		('Isis Azevedo', 'isis.azevedo@escola.com', 345689, 'aluno'),
+		('Erick Morais', 'erick.morais@escola.com', 456791, 'aluno'),
+		('Ana Clara Dinis', 'anac.dinis@escola.com', 567812, 'aluno'),
+		('Anthony Corte Real', 'anthony.corte@escola.com', 678923, 'aluno'),
+		('Luna Pinheiro', 'luna.pinheiro@escola.com', 789134, 'aluno'),
+		('Benício Figueiredo', 'benicio.figueiredo@escola.com', 891245, 'aluno'),
+		('Maria Eduarda Bento', 'mariae.bento@escola.com', 912356, 'aluno'),
+		('João Vitor Ávila', 'joaov.avila@escola.com', 123467, 'aluno'),
+		('Clarice Sacramento', 'clarice.sacramento@escola.com', 234578, 'aluno'),
+		('Lucca Camacho', 'lucca.camacho@escola.com', 345689, 'aluno'),
+		('Maria Fernanda Varela', 'mariaf.varela@escola.com', 456791, 'aluno'),
+		('Francisco Vasques', 'francisco.vasques@escola.com', 567812, 'aluno'),
+		('Heloísa Teles', 'heloisa.teles@escola.com', 678923, 'aluno'),
+		('Rodrigo Quintanilha', 'rodrigo.quintanilha@escola.com', 789134, 'aluno'),
+		('Maria Luiza Vilas Boas', 'marial.vilas@escola.com', 891245, 'aluno'),
+		('Caio Trindade', 'caio.trindade@escola.com', 912356, 'aluno'),
+		('Laura Sofia Gentil', 'lauras.gentil@escola.com', 123467, 'aluno'),
+		('Matheus Sacramento', 'matheus.sacramento@escola.com', 234578, 'aluno'),
+		('Maria Vitória Antunes', 'mariav.antunes@escola.com', 345689, 'aluno'),
+		('Guilherme Frutuoso', 'guilherme.frutuoso@escola.com', 456791, 'aluno'),
+		('Letícia Belchior', 'leticia.belchior@escola.com', 567812, 'aluno'),
+		('Samuel Viana', 'samuel.viana@escola.com', 678923, 'aluno'),
+		('Maria Julia Corte Real', 'mariaj.corte@escola.com', 789134, 'aluno'),
+		('Davi Lucas Vilalobos', 'davil.vilalobos@escola.com', 891245, 'aluno'),
+		('Ana Beatriz Taveira', 'anab.taveira@escola.com', 912356, 'aluno'),
+		('Enzo Gabriel Balsemão', 'enzog.balsemao@escola.com', 123467, 'aluno'),
+		('Maria Alice Saldanha', 'mariaa.saldanha@escola.com', 234578, 'aluno'),
+		('Luan Vilariça', 'luan.vilarica@escola.com', 345689, 'aluno'),
+		('Sophia Mendonça', 'sophia.mendonca@escola.com', 456791, 'aluno'),
+		('Ian Monsanto', 'ian.monsanto@escola.com', 567812, 'aluno'),
+		('Isabelly Maldonado', 'isabelly.maldonado@escola.com', 678923, 'aluno'),
+		('João Miguel Castanho', 'joaom.castanho@escola.com', 789134, 'aluno'),
+		('Valentina Infante', 'valentina.infante@escola.com', 891245, 'aluno'),
+		('Benjamin Castelo Branco', 'benjamin.castelo@escola.com', 912356, 'aluno'),
+		('Lavínia Sardinha', 'lavinia.sardinha@escola.com', 123467, 'aluno'),
+		('Anthony Barreto', 'anthony.barreto@escola.com', 234578, 'aluno'),
+		('Maria Cecília Carvalhoso', 'mariac.carvalhoso@escola.com', 345689, 'aluno'),
+		('Enrico Carvalhal', 'enrico.carvalhal@escola.com', 456791, 'aluno'),
+		('Maria Helena Canela', 'mariah.canela@escola.com', 567812, 'aluno'),
+		('Davi Miguel Caneira', 'davim.caneira@escola.com', 678923, 'aluno'),
+		('Luana Valverde', 'luana.valverde@escola.com', 789134, 'aluno'),
+		('Noah Castanheda', 'noah.castanheda@escola.com', 891245, 'aluno'),
+		('Maria Laura Carneiro', 'marial.carneiro@escola.com', 912356, 'aluno'),
+		('João Gabriel Botelho', 'joaog.botelho@escola.com', 123467, 'aluno'),
+		('Ana Laura Barrocas', 'anal.barrocas@escola.com', 234578, 'aluno'),
+		('Theo Almada', 'theo.almada@escola.com', 345689, 'aluno'),
+		('Maria Isis Azenha', 'mariai.azenha@escola.com', 456791, 'aluno'),
+		('Henry Alburquerque', 'henry.alburquerque@escola.com', 567812, 'aluno'),
+		('Lívia Alvim', 'livia.alvim@escola.com', 678923, 'aluno'),
+		('Luiz Felipe Alcoforado', 'luizf.alcoforado@escola.com', 789134, 'aluno'),
+		('Maria Valentina Aleixo', 'mariav.aleixo@escola.com', 891245, 'aluno'),
+		('Nathan Alvarenga', 'nathan.alvarenga@escola.com', 912356, 'aluno'),
+		('Eloá Alarcão', 'eloa.alarcao@escola.com', 123467, 'aluno'),
+		('Pedro Henrique Aires', 'pedroh.aires@escola.com', 234578, 'aluno'),
+		('Maria Flor Aguiar', 'mariaf.aguiar@escola.com', 345689, 'aluno'),
+		('Lucas Gabriel Azevedo', 'lucasg.azevedo@escola.com', 456791, 'aluno'),
+		('Maria Clara Abrantes', 'mariac.abrantes@escola.com', 567812, 'aluno'),
+		('Bernardo Abreu', 'bernardo.abreu@escola.com', 678923, 'aluno'),
+		('Helena Abelha', 'helena.abelha@escola.com', 789134, 'aluno'),
+		('Murilo Aboim', 'murilo.aboim@escola.com', 891245, 'aluno'),
+		('Mariana Abrantes', 'mariana.abrantes@escola.com', 912356, 'aluno'),
+		('João Lucas Abreu', 'joaol.abreu@escola.com', 123467, 'aluno'),
+		('Ana Luiza Abrunheiro', 'anal.abrunheiro@escola.com', 234578, 'aluno'),
+		('Eduardo Abrunhosa', 'eduardo.abrunhosa@escola.com', 345689, 'aluno'),
+		('Clara Aboim', 'clara.aboim@escola.com', 456791, 'aluno'),
+		('Felipe Abrantes', 'felipe.abrantes@escola.com', 567812, 'aluno'),
+		('Laura Abreu', 'laura.abreu@escola.com', 678923, 'aluno'),
+		('Enzo Abrunheiro', 'enzo.abrunheiro@escola.com', 789134, 'aluno'),
+		('Valentina Abrunhosa', 'valentina.abrunhosa@escola.com', 891245, 'aluno'),
+		('Gabriel Aboim', 'gabriel.aboim@escola.com', 912356, 'aluno'),
+		('Sophia Abrantes', 'sophia.abrantes@escola.com', 123467, 'aluno'),
+		('Davi Abreu', 'davi.abreu@escola.com', 234578, 'aluno');
+        
+INSERT INTO Noticias (titulo, descrição, data, imagem, id_usuario, categoria) VALUES
+(
+    'Lançamento de Novo Celular Revoluciona o Mercado',
+    'O novo modelo promete desempenho superior e tecnologia inédita em câmeras.',
+    '2025-05-10',
+    LOAD_FILE('/caminho/imagens/celular.jpg'),
+    1,
+    'Tecnologia'
+),
+(
+    'Evento de Esportes Reúne Atletas do Brasil Todo',
+    'O campeonato nacional de atletismo começa neste fim de semana em São Paulo.',
+    '2025-05-12',
+    LOAD_FILE('/caminho/imagens/esportes.jpg'),
+    2,
+    'Esporte'
+),
+(
+    'Governo Anuncia Novo Programa de Educação',
+    'Investimento promete melhorar a qualidade de ensino nas escolas públicas.',
+    '2025-05-13',
+    LOAD_FILE('/caminho/imagens/educacao.jpg'),
+    3,
+    'Educação'
+),
+(
+    'Nova Série da TV Bate Recordes de Audiência',
+    'A produção nacional alcançou mais de 10 milhões de telespectadores na estreia.',
+    '2025-05-14',
+    LOAD_FILE('/caminho/imagens/serie.jpg'),
+    4,
+    'Entretenimento'
+),
+(
+    'Feira de Empregos Abre Mil Vagas em Diversas Áreas',
+    'O evento ocorrerá no centro de convenções e terá entrada gratuita.',
+    '2025-05-15',
+    LOAD_FILE('/caminho/imagens/empregos.jpg'),
+    5,
+    'Economia'
 );
 
-CREATE TABLE Coordenadores (
-	id_coordenador INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	nome VARCHAR(255) NOT NULL,
-	email VARCHAR(255) NOT NULL,
-	senha INT NOT NULL
-);
+        
+SELECT nome, email
+FROM Usuarios
+WHERE cargo = 'aluno';
 
-CREATE TABLE Noticias (
-	id_noticias INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	assunto TEXT NOT NULL,
-	descrição TEXT NOT NULL,
-	data DATE NOT NULL,
-	id_imagens BLOB NOT NULL,
-	id_usuario INTEGER NOT NULL
-);
+SELECT nome, email
+FROM Usuarios
+WHERE cargo = 'gremio';
 
-CREATE TABLE Categoria (
-	id_categoria INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	nome_categoria VARCHAR(255) NOT NULL
-);
+SELECT nome, email
+FROM Usuarios
+WHERE cargo = 'professor';
 
-CREATE TABLE Noticia_Categoria (
-	id_categoria INT NOT NULL,
-    id_noticia INTEGER NOT NULL
-);
-
-CREATE TABLE Imagens (
-	id_imagens INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	imagens BLOB NOT NULL
-);
-
-CREATE TABLE Usuarios (
-	id_coordenador INT NOT NULL ,
-	id_alunos INT NOT NULL,
-	id_professores INT NOT NULL,
-	id_usuario INT PRIMARY KEY AUTO_INCREMENT NOT NULL
-);
-
-INSERT INTO Alunos (nome, email, senha, cargo)
-VALUES		('Ana Souza', 'ana.souza@email.com', 12345678, 'gremio'),
-			('Bruno Lima', 'bruno.lima@email.com', 23456789, 'gremio'),
-			('Carla Oliveira', 'carla.oliveira@email.com', 34567890, 'gremio'),
-			('Daniel Costa', 'daniel.costa@email.com', 45678901, 'gremio'),
-			('Eduarda Rocha', 'eduarda.rocha@email.com', 56789012, 'gremio'),
-			('Felipe Martins', 'felipe.martins@email.com', 67890123, 'gremio'),
-			('Gabriela Silva', 'gabriela.silva@email.com', 78901234, 'gremio'),
-			('Henrique Almeida', 'henrique.almeida@email.com', 89012345, 'gremio'),
-			('Isabela Melo', 'isabela.melo@email.com', 90123456, 'gremio'),
-			('João Pereira', 'joao.pereira@email.com', 11223344, 'gremio'),
-			('Lucas Fernandes', 'lucas.fernandes@email.com', 22334455, 'aluno'),
-			('Mariana Castro', 'mariana.castro@email.com', 33445566, 'aluno'),
-			('Nicolas Dias', 'nicolas.dias@email.com', 44556677, 'aluno'),
-			('Olivia Barros', 'olivia.barros@email.com', 55667788, 'aluno'),
-			('Pedro Nogueira', 'pedro.nogueira@email.com', 66778899, 'aluno'),
-			('Queila Moreira', 'queila.moreira@email.com', 77889900, 'aluno'),
-			('Rafael Teixeira', 'rafael.teixeira@email.com', 88990011, 'aluno'),
-			('Sabrina Rezende', 'sabrina.rezende@email.com', 99001122, 'aluno'),
-			('Thiago Ribeiro', 'thiago.ribeiro@email.com', 10101010, 'aluno'),
-			('Ursula Menezes', 'ursula.menezes@email.com', 20202020, 'aluno'),
-			('Vinicius Prado', 'vinicius.prado@email.com', 30303030, 'aluno'),
-			('Wesley Cunha', 'wesley.cunha@email.com', 40404040, 'aluno'),
-			('Xuxa Fonseca', 'xuxa.fonseca@email.com', 50505050, 'aluno'),
-			('Yasmin Lopes', 'yasmin.lopes@email.com', 60606060, 'aluno'),
-			('Zeca Tavares', 'zeca.tavares@email.com', 70707070, 'aluno'),
-			('Amanda Braga', 'amanda.braga@email.com', 80808080, 'aluno'),
-			('Breno Duarte', 'breno.duarte@email.com', 90909090, 'aluno'),
-			('Camila Assis', 'camila.assis@email.com', 11110000, 'aluno'),
-			('Diego Viana', 'diego.viana@email.com', 12121212, 'aluno'),
-			('Elaine Gouveia', 'elaine.gouveia@email.com', 13131313, 'aluno'),
-			('Fabio Antunes', 'fabio.antunes@email.com', 14141414, 'aluno'),
-			('Giovana Lopes', 'giovana.lopes@email.com', 15151515, 'aluno'),
-			('Heitor Monteiro', 'heitor.monteiro@email.com', 16161616, 'aluno'),
-			('Irene Martins', 'irene.martins@email.com', 17171717, 'aluno'),
-			('Jonas Freitas', 'jonas.freitas@email.com', 18181818, 'aluno'),
-			('Karen Silva', 'karen.silva@email.com', 19191919, 'aluno'),
-			('Leandro Rocha', 'leandro.rocha@email.com', 21212121, 'aluno'),
-			('Mirela Cardoso', 'mirela.cardoso@email.com', 22222222, 'aluno'),
-			('Natanael Cruz', 'natanael.cruz@email.com', 23232323, 'aluno'),
-			('Otávio Lima', 'otavio.lima@email.com', 24242424, 'aluno'),
-			('Patrícia Campos', 'patricia.campos@email.com', 25252525, 'aluno'),
-			('Quirino Leite', 'quirino.leite@email.com', 26262626, 'aluno'),
-			('Renata Matos', 'renata.matos@email.com', 27272727, 'aluno'),
-			('Samuel Pires', 'samuel.pires@email.com', 28282828, 'aluno'),
-			('Tainá Miranda', 'taina.miranda@email.com', 29292929, 'aluno'),
-			('Ubirajara Lima', 'ubirajara.lima@email.com', 30313131, 'aluno'),
-			('Valéria Dutra', 'valeria.dutra@email.com', 31323232, 'aluno'),
-			('Wagner Nunes', 'wagner.nunes@email.com', 32333333, 'aluno'),
-			('Ximena Ferreira', 'ximena.ferreira@email.com', 33343434, 'aluno'),
-			('Yuri Batista', 'yuri.batista@email.com', 34353535, 'aluno'),
-			('Zuleika Amorim', 'zuleika.amorim@email.com', 35363636, 'aluno'),
-			('Alan Gomes', 'alan.gomes@email.com', 36373737, 'aluno'),
-			('Bianca Trindade', 'bianca.trindade@email.com', 37383838, 'aluno'),
-			('Caio Bittencourt', 'caio.bittencourt@email.com', 38393939, 'aluno'),
-			('Daniele Bezerra', 'daniele.bezerra@email.com', 39404040, 'aluno'),
-			('Eduardo Sena', 'eduardo.sena@email.com', 40414141, 'aluno'),
-			('Fernanda Luz', 'fernanda.luz@email.com', 41424242, 'aluno'),
-			('Gustavo Melo', 'gustavo.melo@email.com', 42434343, 'aluno'),
-			('Helena Vieira', 'helena.vieira@email.com', 43444444, 'aluno'),
-			('Igor Ramos', 'igor.ramos@email.com', 44454545, 'aluno'),
-			('Júlia Santana', 'julia.santana@email.com', 45464646, 'aluno'),
-			('Kauan Moraes', 'kauan.moraes@email.com', 46474747, 'aluno'),
-			('Larissa Pacheco', 'larissa.pacheco@email.com', 47484848, 'aluno'),
-			('Maurício Brito', 'mauricio.brito@email.com', 48494949, 'aluno'),
-			('Nicole Braga', 'nicole.braga@email.com', 49505050, 'aluno'),
-			('Otília Cardoso', 'otilia.cardoso@email.com', 50515151, 'aluno'),
-			('Paulo Henrique', 'paulo.henrique@email.com', 51525252, 'aluno'),
-			('Raquel Nóbrega', 'raquel.nobrega@email.com', 52535353, 'aluno'),
-			('Sandro Azevedo', 'sandro.azevedo@email.com', 53545454, 'aluno'),
-			('Talita Gomes', 'talita.gomes@email.com', 54555555, 'aluno'),
-			('Ulisses Rocha', 'ulisses.rocha@email.com', 55565656, 'aluno'),
-			('Vanessa Souza', 'vanessa.souza@email.com', 56575757, 'aluno'),
-			('Willian Prado', 'willian.prado@email.com', 57585858, 'aluno'),
-			('Xavier Borges', 'xavier.borges@email.com', 58595959, 'aluno'),
-			('Yanca Almeida', 'yanca.almeida@email.com', 59606060, 'aluno'),
-			('Zilda Carvalho', 'zilda.carvalho@email.com', 60616161, 'aluno'),
-			('Anderson Oliveira', 'anderson.oliveira@email.com', 61626262, 'aluno'),
-			('Beatriz Ramos', 'beatriz.ramos@email.com', 62636363, 'aluno'),
-			('Cristiano Martins', 'cristiano.martins@email.com', 63646464, 'aluno'),
-			('Débora Lima', 'debora.lima@email.com', 64656565, 'aluno');
-            
-SELECT *FROM Alunos;
-
-INSERT INTO Professores (nome, email, senha) 
-VALUES		('Adriana Costa', 'adriana.costa@email.com', 12345678),
-			('Bruno Tavares', 'bruno.tavares@email.com', 23456789),
-			('Carolina Mendes', 'carolina.mendes@email.com', 34567890),
-			('Daniel Albuquerque', 'daniel.albuquerque@email.com', 45678901),
-			('Eduarda Rocha', 'eduarda.rocha@email.com', 56789012),
-			('Fernando Castro', 'fernando.castro@email.com', 67890123),
-			('Gisele Martins', 'gisele.martins@email.com', 78901234),
-			('Henrique Duarte', 'henrique.duarte@email.com', 89012345);
-            
-SELECT *FROM Professores;
-
-INSERT INTO Coordenadores (nome, email, senha)
-VALUES      ('Ariuci Coruja', 'ariuci.coruja@gmail.com', 92357925),
-            ('Viviane Genteboa', 'viviane.genteboa@gmail.com', 73057294);
-            
-SELECT *FROM Coordenadores;
+SELECT nome, email
+FROM Usuarios
+WHERE cargo = 'adm';

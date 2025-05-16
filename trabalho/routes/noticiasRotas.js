@@ -1,11 +1,9 @@
 import express from 'express';
 import { listarNoticiasController, obterNoticiaPorIdController, criarNoticiaController, atualizarNoticiaController, excluirNoticiaController } from '../controllers/NoticiasController.js';
-import authMiddleware from '../controllers/NoticiasController.js';
+import authMiddleware from '../middleware/authMiddleware.js';
 import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';
-
-const router = express.Router();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,8 +23,9 @@ const storage = multer.diskStorage({
 // cria o local onde irá ser armazendado os arquivos
 const upload = multer({ storage: storage});
 
-router.get('/', listarNoticiasController);
+const router = express.Router();
 
+router.get('/', listarNoticiasController);
 router.get('/:id', obterNoticiaPorIdController);
 
 router.post('/', authMiddleware, upload.single('imagem'), criarNoticiaController);
@@ -34,5 +33,15 @@ router.post('/', authMiddleware, upload.single('imagem'), criarNoticiaController
 router.put('/:id', authMiddleware, upload.single('imagem'), atualizarNoticiaController);
 
 router.delete('/:id', authMiddleware, excluirNoticiaController);
+
+router.options('/', (req, res) => {
+    res.setHeader('Allow', 'GET, POST, OPTIONS');
+    res.status(204).send();
+});
+
+router.options('/:id', (req, res) => {
+    res.setHeader('Allow', 'GET, PUT, DELETE, OPTIONS');
+    res.status(204).send();
+});
 
 export default router;
