@@ -31,7 +31,7 @@ const obterNoticiaPorIdController = async (req, res) => {
 
 const criarNoticiaController = async (req, res) => {
     try {
-        const { assunto, descrição, data, imagem } = req.body;
+        const { titulo, descrição, data, imagem, categoria } = req.body;
         let imagemPath = null;
         // req requisita algo do servidor e file indica que essa requisição irá possuir um arquivo enviado pelo usuário.
         if (req.file) {
@@ -40,19 +40,17 @@ const criarNoticiaController = async (req, res) => {
         }
         // requisição do conteudo enviado pelo criador da noticia
         const noticiaData =
-            [
-                conteudo = {
-                    assunto: assunto,
+                {
+                    titulo: titulo,
                     descrição: descrição,
-                    data: data
-                },
-                img = {
-                    img: imagem
-                }
-            ];
+                    data: data,
+                    imagem: imagem,
+                    categoria: categoria
+                };
 
         const noticiaId = await criarNoticia(noticiaData);
         res.status(201).json({ mensagem: 'Noticia criada com sucesso', noticiaId });
+        console.log(noticiaData)
     } catch (err) {
         console.error('Erro ao criar a noticia: ', err);
         res.status(500).json({ mensagem: 'Erro ao criar noticia' });
@@ -62,7 +60,7 @@ const criarNoticiaController = async (req, res) => {
 const atualizarNoticiaController = async (req, res) => {
     try {
         const noticiaId = req.params.id;
-        const { assunto, descrição, data, imagem } = req.body;
+        const { titulo, descrição, data, imagem, categoria } = req.body;
         let imagemPath = null;
         // req requisita algo do servidor e file indica que essa requisição irá possuir um arquivo enviado pelo usuário.
         if (req.file) {
@@ -71,16 +69,13 @@ const atualizarNoticiaController = async (req, res) => {
         }
         // requisição do conteudo enviado pelo criador da noticia
         const noticiaData =
-            [
-                conteudo = {
-                    assunto: assunto,
+                {
+                    titulo: titulo,
                     descrição: descrição,
-                    data: data
-                },
-                img = {
-                    img: imagem
-                }
-            ];
+                    data: data,
+                    imagem: imagem,
+                    categoria: categoria
+                };
 
         await atualizarNoticia(noticiaId, noticiaData);
         res.status(201).json({ mensagem: 'Noticia atualizada com sucesso.' });

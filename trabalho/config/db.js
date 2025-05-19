@@ -34,7 +34,7 @@ async function readAll(table, where = null) {
 
 };
 
-//Função para ler  um registro específico
+//Função para ler um registro específico
 async function read(table, where) {
     const connection = await getConnection();
     try {

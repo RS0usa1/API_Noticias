@@ -1,4 +1,4 @@
-import { readAll, read, deleteRecord } from '../config/db.js';
+import { create, readAll, read, update, deleteRecord } from '../config/db.js';
 
 const listarNoticias = async () => {
     try {
@@ -10,34 +10,34 @@ const listarNoticias = async () => {
 
 const obterNoticiaPorId = async (id) => {
     try {
-        return await read('Noticia', `id = ${id}`);
+        return await read('Noticias', `id_noticias = ${id}`);
     } catch (err) {
-        console.error('Erro ao obter livro por ID: ', err);
+        console.error('Erro ao obter noticia por ID: ', err);
         throw err;
     }
 };
 
 const criarNoticia = async (noticiaData) => {
     try {
-        return await create('noticias', noticiaData);
+        return await create('Noticias', noticiaData);
     } catch (err) {
-        res.status(500).json({ mensagem: 'Erro ao criar noticia: ', err });
+        console.error('Erro ao criar a noticia: ', err);
         throw err;
     }
 };
 
-const atualizarNoticia = async (id, livroData) => {
+const atualizarNoticia = async (id, noticiaData) => {
     try {
-        await update('noticias', livroData, `id = ${id}`);
+        await update('Noticias', noticiaData, `id_noticias = ${id}`);
     } catch (err) {
         console.error('Erro ao atualizar noticia: ', err);
         throw err;
     }
 };
 
-const excluirNoticia = async (id, livroData) => {
+const excluirNoticia = async (id) => {
     try {
-        await deleteRecord('noticias', livroData, `id = ${id}`);
+        await deleteRecord('Noticias', `id_noticias = ${id}`);
     } catch (err) {
         console.error('Erro ao excluir noticia: ', err);
         throw err;
