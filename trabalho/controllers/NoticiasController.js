@@ -31,7 +31,7 @@ const obterNoticiaPorIdController = async (req, res) => {
 
 const criarNoticiaController = async (req, res) => {
     try {
-        const { titulo, descrição, data, imagem, categoria } = req.body;
+        const { titulo, descricao, data, imagem, usuario, categoria } = req.body;
         let imagemPath = null;
         // req requisita algo do servidor e file indica que essa requisição irá possuir um arquivo enviado pelo usuário.
         if (req.file) {
@@ -42,9 +42,10 @@ const criarNoticiaController = async (req, res) => {
         const noticiaData =
                 {
                     titulo: titulo,
-                    descrição: descrição,
+                    descricao: descricao,
                     data: data,
                     imagem: imagem,
+                    usuario: usuario,
                     categoria: categoria
                 };
 
@@ -60,7 +61,7 @@ const criarNoticiaController = async (req, res) => {
 const atualizarNoticiaController = async (req, res) => {
     try {
         const noticiaId = req.params.id;
-        const { titulo, descrição, data, imagem, categoria } = req.body;
+        const { titulo, descricao, data, imagem, usuario, categoria } = req.body;
         let imagemPath = null;
         // req requisita algo do servidor e file indica que essa requisição irá possuir um arquivo enviado pelo usuário.
         if (req.file) {
@@ -71,9 +72,10 @@ const atualizarNoticiaController = async (req, res) => {
         const noticiaData =
                 {
                     titulo: titulo,
-                    descrição: descrição,
+                    descricao: descricao,
                     data: data,
                     imagem: imagem,
+                    usuario: usuario,
                     categoria: categoria
                 };
 

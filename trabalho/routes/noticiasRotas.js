@@ -12,7 +12,7 @@ const __dirname = path.dirname(__filename);
 const storage = multer.diskStorage({
 // diz onde salvar os arquivos, que é na pasta upload
     destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, '../uploads'));
+        cb(null, path.join(__dirname, '../upload'));
     },
 // defini o nome do arquivo
     filename: (req, file, cb) => {
