@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste de Upload de Livro</title>
+    <title>Teste de Upload de Notcia</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
         }
-
         form {
             display: flex;
             flex-direction: column;
             max-width: 400px;
             margin-bottom: 20px;
         }
-
         label {
             margin-top: 10px;
         }
-
         input[type="text"],
         input[type="file"] {
             padding: 8px;
@@ -30,7 +26,6 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-
         button {
             padding: 10px 15px;
             background-color: #4CAF50;
@@ -39,7 +34,6 @@
             border-radius: 4px;
             cursor: pointer;
         }
-
         #response {
             margin-top: 20px;
             padding: 15px;
@@ -49,7 +43,6 @@
         }
     </style>
 </head>
-
 <body>
 
     <h1>Adicionar Nova Noticia</h1>
@@ -61,17 +54,17 @@
         <label for="descricao">Descrição:</label>
         <input type="text" id="descricao" name="descricao" required>
 
-        <label for="data">Data:</label>
+        <label for="data">Data da Postagem:</label>
         <input type="date" id="data" name="data" required>
+
+        <label for="imagem">Imagem da Postagem:</label>
+        <input type="file" id="imagem" name="imagem" accept="image/*" required>
 
         <label for="usuario">ID do Usuário:</label>
         <input type="text" id="usuario" name="usuario" required>
 
-        <label for="categoria">Categoria:</label>
+        <label for="categoria">Categoria da Noticia:</label>
         <input type="text" id="categoria" name="categoria" required>
-
-        <label for="imagem">Imagem do site:</label>
-        <input type="file" id="imagem" name="imagem" accept="image/*" required>
 
         <button type="submit">Adicionar Noticia</button>
     </form>
@@ -82,17 +75,17 @@
     </div>
 
     <script>
-        document.getElementById('noticiaForm').addEventListener('submit', async function (event) {
+        document.getElementById('noticiaForm').addEventListener('submit', async function(event) {
             event.preventDefault();
 
             const form = document.getElementById('noticiaForm');
             const formData = new FormData(form);
-            console.log(form)
+            console.log(formData)
             try {
                 const response = await fetch('http://localhost:3000/noticias', {
                     method: 'POST',
                     headers: {
-                        'Authorization': 'SEGREDO'
+                        'Authorization': 'SEGREDO' // Substitua pelo seu token JWT
                     },
                     body: formData
                 });
@@ -105,7 +98,5 @@
             }
         });
     </script>
-
 </body>
-
 </html>
